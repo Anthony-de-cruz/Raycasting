@@ -1,8 +1,16 @@
+from settings import SETTINGS
+
+from game import Game
 import pygame
+
 
 def main():
 
-    pass
+    pygame.init()
+
+    game = Game()
+
+    game.main_loop()
 
 
 if __name__ == "__main__":
