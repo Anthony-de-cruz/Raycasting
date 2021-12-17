@@ -2,8 +2,10 @@ import os
 import sys
 
 from settings import SETTINGS
+from scenes import main_menu
 import pygame
 
+class Object: pass
 
 class Game:
 
@@ -18,7 +20,17 @@ class Game:
 
         self.window = self.setup_window()
 
+        ## Clock
         self.clock = pygame.time.Clock()
+        self.FPS = SETTINGS.fps
+
+        ## Scenes
+        self.scenes = Object()
+        self.scenes.main_menu = main_menu.MainMenu()
+
+        ## Initial state
+        self.scenes.focus = self.scenes.main_menu
+        self.running = True
 
     def setup_window(self) -> pygame.surface:
 
@@ -40,8 +52,12 @@ class Game:
 
     def main_loop(self) -> None:
 
-        self.running = True
-
         while self.running:
 
+            self.clock.tick(self.FPS)
             self.handle_events()
+
+            self.scenes.focus.update()
+            self.scenes.focus.draw()
+
+            pygame.display.flip()
