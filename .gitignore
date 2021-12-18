@@ -1,5 +1,6 @@
 .python-version
 src/__pycache__
 src/scenes/__pycache__
+src/objects/__pycache__
 raycasting.code-workspace
 .vscode

@@ -58,6 +58,7 @@ class Game:
             self.handle_events()
 
             self.scenes.focus.update()
-            self.scenes.focus.draw()
+            render = self.scenes.focus.render()
+            self.window.blit(render, (0, 0), self.scenes.focus.rect)
 
             pygame.display.flip()
