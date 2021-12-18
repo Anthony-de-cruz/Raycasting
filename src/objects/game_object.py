@@ -1,10 +1,18 @@
 import pygame
 
+
 class GameObject(pygame.sprite.Sprite):
 
     """A base game object class that all other game objects will inherit from."""
 
-    def __init__(self, x_pos: int, y_pos: int, *groups: pygame.sprite.Group, width: int = 1, height: int = 1):
+    def __init__(
+        self,
+        x_pos: int,
+        y_pos: int,
+        *groups: pygame.sprite.Group,
+        width: int = 1,
+        height: int = 1
+    ):
 
         super().__init__(*groups)
 
@@ -18,4 +26,6 @@ class GameObject(pygame.sprite.Sprite):
 
         ## Surface and rect
         self.image = pygame.Surface((width, height))
-        self.rect = pygame.Rect(x_pos, y_pos, self.image.get_width(), self.image.get_height())
+        self.rect = pygame.Rect(
+            x_pos, y_pos, self.image.get_width(), self.image.get_height()
+        )

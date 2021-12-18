@@ -5,7 +5,10 @@ from settings import SETTINGS
 from scenes import main_menu
 import pygame
 
-class Object: pass
+
+class Object:
+    pass
+
 
 class Game:
 
@@ -14,7 +17,7 @@ class Game:
     def __init__(self):
 
         ## Setup window
-        self.window_width =  SETTINGS.window_width
+        self.window_width = SETTINGS.window_width
         self.window_height = SETTINGS.window_height
         self.window_name = SETTINGS.window_name
 
