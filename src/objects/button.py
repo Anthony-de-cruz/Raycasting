@@ -14,7 +14,7 @@ class Button(GameObject):
         x_pos: int,
         y_pos: int,
         *groups: pygame.sprite.Group,
-        function=None
+        function: FunctionType = None
     ):
 
         super().__init__(
@@ -30,4 +30,4 @@ class Button(GameObject):
 
         """A method to represent the function of a button when pressed."""
 
-        print("wooooo")
+        print("Function unassigned")

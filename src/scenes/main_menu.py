@@ -44,6 +44,7 @@ class MainMenu(pygame.sprite.Sprite):
         # Start button
         def start_function():
             print("WOOO")
+            self.groups()[0].add()
 
         self.start_button = button.Button(
             start_btn_img,
@@ -66,10 +67,23 @@ class MainMenu(pygame.sprite.Sprite):
             self.title_text.image.get_height(),
         )
 
-    def update(self):
+    def update(self, event_list):
 
-        """ """
-        self.groups()[0].add()
+        """Method to run every frame and update scene behaviour."""
+
+        ## Handle events
+        for event in event_list:
+
+            if (
+                event.type == pygame.MOUSEBUTTONDOWN and
+                event.button == pygame.BUTTON_LEFT
+            ):
+                pos = pygame.mouse.get_pos()
+                clicked_buttons = [b for b in self.group.buttons if b.rect.collidepoint(pos)]
+                print("Clicked at", pos, "on", clicked_buttons)
+
+                for button in clicked_buttons:
+                        button.function()
 
     def render(self) -> pygame.surface:
 

@@ -50,7 +50,7 @@ class Game:
 
         for event in self.event_list:
 
-            if event.type == pygame.QUIT:
+            if event.type is pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
@@ -61,7 +61,7 @@ class Game:
             self.clock.tick(self.FPS)
             self.handle_events()
 
-            self.scenes.focus.update()
+            self.scenes.focus.update(self.event_list)
 
             # Should try to find a nicer way to refer to the focused sprite
             focused_sprite = self.scenes.focus.sprites()[0]
