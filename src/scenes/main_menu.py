@@ -8,9 +8,9 @@ class MainMenu(pygame.sprite.Sprite):
 
     """Main Menu scene; allows user to choose what to do."""
 
-    def __init__(self, *groups):
+    def __init__(self, *group):
 
-        super().__init__(*groups)
+        super().__init__(*group)
 
         ## Create surface
         self.image = pygame.display.get_surface()
@@ -20,9 +20,9 @@ class MainMenu(pygame.sprite.Sprite):
         self.height = self.image.get_height()
 
         ## Create sprite groups
-        self.groups = Object()
-        self.groups.text = pygame.sprite.Group()
-        self.groups.buttons = pygame.sprite.Group()
+        self.group = Object()
+        self.group.text = pygame.sprite.Group()
+        self.group.buttons = pygame.sprite.Group()
 
         ## Load assets
         # Temporary surface, will load an actual sprite asset in the future
@@ -35,13 +35,16 @@ class MainMenu(pygame.sprite.Sprite):
 
         ## Create objects
         # Start button
+        def start_function():
+            print("WOOO")
         self.start_button = button.Button(start_btn_img,
             self.width // 2 - start_btn_img.get_width() // 2, 300,
-            self.groups.buttons)
+            self.group.buttons,
+            function = start_function)
 
         # Title text
         # Temporary sprite, will be made from a base Game Object class in future
-        self.title_text = pygame.sprite.Sprite(self.groups.text)
+        self.title_text = pygame.sprite.Sprite(self.group.text)
         self.title_text.image = pygame.font.SysFont(None, 150).render(
             "Raycasting Demo", True, COLOURS["White"])
         self.title_text.rect = pygame.Rect(
@@ -52,7 +55,11 @@ class MainMenu(pygame.sprite.Sprite):
         )
 
     def update(self):
-        pass
+        
+        """
+        """
+        self.groups()[0].add()
+        self.start_button.function()
 
     def render(self) -> pygame.surface:
 
@@ -62,7 +69,11 @@ class MainMenu(pygame.sprite.Sprite):
             pygame.surface: A surface of the scene frame.
         """
 
-        self.groups.text.draw(self.image)
-        self.groups.buttons.draw(self.image)
+        # Background
+        self.image.fill(COLOURS["Dark Grey"])
+
+        # Draw sprite group
+        self.group.text.draw(self.image)
+        self.group.buttons.draw(self.image)
         
         return self.image

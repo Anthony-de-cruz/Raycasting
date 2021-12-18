@@ -26,10 +26,11 @@ class Game:
 
         ## Scenes
         self.scenes = Object()
+        self.scenes.focus = pygame.sprite.GroupSingle()
         self.scenes.main_menu = main_menu.MainMenu()
 
         ## Initial state
-        self.scenes.focus = self.scenes.main_menu
+        self.scenes.focus.add(self.scenes.main_menu)
         self.running = True
 
     def setup_window(self) -> pygame.surface:
@@ -58,7 +59,10 @@ class Game:
             self.handle_events()
 
             self.scenes.focus.update()
-            render = self.scenes.focus.render()
-            self.window.blit(render, (0, 0), self.scenes.focus.rect)
+
+            # Should try to find a nicer way to refer to the focused sprite
+            focused_sprite = self.scenes.focus.sprites()[0]
+            render = focused_sprite.render()
+            self.window.blit(render, (0, 0), focused_sprite.rect)
 
             pygame.display.flip()
