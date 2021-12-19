@@ -16,10 +16,11 @@ class MainMenu(pygame.sprite.Sprite):
         super().__init__(*group)
 
         ## Create surface
+        # Values may be drawn from settings in future
         self.image = pygame.display.get_surface()
         self.rect = self.image.get_rect()
 
-        self.width = self.image.get_width()
+        self.width = self.image.get_width() 
         self.height = self.image.get_height()
 
         ## Create sprite groups
@@ -67,7 +68,7 @@ class MainMenu(pygame.sprite.Sprite):
             self.title_text.image.get_height(),
         )
 
-    def update(self, event_list):
+    def update(self, event_list) -> None:
 
         """Method to run every frame and update scene behaviour."""
 

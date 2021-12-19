@@ -1,7 +1,7 @@
 from types import FunctionType
-import pygame
 
-from objects.game_object import GameObject
+from game_object import GameObject
+import pygame
 
 
 class Button(GameObject):
@@ -13,15 +13,13 @@ class Button(GameObject):
         image: pygame.Surface,
         x_pos: int,
         y_pos: int,
-        *groups: pygame.sprite.Group,
+        *group: pygame.sprite.Group,
         function: FunctionType = None
     ):
 
         super().__init__(
-            x_pos, y_pos, *groups, width=image.get_width(), height=image.get_height()
+            x_pos, y_pos, *group, image=image
         )
-
-        self.image = image
 
         if function is not None:
             self.function = function
