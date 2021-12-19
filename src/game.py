@@ -2,7 +2,8 @@ import os
 import sys
 
 from settings import SETTINGS
-from scenes import main_menu
+from scenes import main_menu, raycast_demo
+from constants import MAIN_MENU, RAYCAST_DEMO
 import pygame
 
 
@@ -31,9 +32,10 @@ class Game:
         self.scenes = Object()
         self.scenes.focus = pygame.sprite.GroupSingle()
         self.scenes.main_menu = main_menu.MainMenu()
+        self.scenes.raycast_demo = raycast_demo.RaycastDemo()
 
         ## Initial state
-        self.scenes.focus.add(self.scenes.main_menu)
+        pygame.event.post(pygame.event.Event(MAIN_MENU))
         self.running = True
 
     def setup_window(self) -> pygame.surface:
@@ -53,6 +55,14 @@ class Game:
             if event.type is pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            
+            elif event.type == MAIN_MENU:
+                print("Changing scene to: Main Menu")
+                self.scenes.focus.add(self.scenes.main_menu)
+
+            elif event.type == RAYCAST_DEMO:
+                print("Changing scene to: Raycast Demo")
+                self.scenes.focus.add(self.scenes.raycast_demo)
 
     def main_loop(self) -> None:
 

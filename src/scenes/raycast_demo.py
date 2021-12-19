@@ -1,4 +1,5 @@
-from settings import SETTINGS, COLOURS
+from settings import SETTINGS
+from constants import COLOURS
 import pygame
 
 
@@ -51,6 +52,8 @@ class RaycastDemo(pygame.sprite.Sprite):
 
         # Background
         self.image.fill(COLOURS["Dark Grey"])
+
+        pygame.draw.rect(self.image, COLOURS["White"], (50,50,10,10))
 
         # Draw sprite group
         

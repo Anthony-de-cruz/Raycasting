@@ -1,5 +1,3 @@
-from settings import SETTINGS
-
 from game import Game
 import pygame
 

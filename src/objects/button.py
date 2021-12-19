@@ -1,10 +1,9 @@
 from types import FunctionType
 
-from game_object import GameObject
+from objects import game_object
 import pygame
 
-
-class Button(GameObject):
+class Button(game_object.GameObject):
 
     """A button object"""
 

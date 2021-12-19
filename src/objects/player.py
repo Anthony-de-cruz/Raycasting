@@ -1,7 +1,7 @@
-from game_object import GameObject
+from objects import game_object
 import pygame
 
-class Player(GameObject):
+class Player(game_object.GameObject):
 
     def __init__(
         self, 

@@ -1,4 +1,5 @@
-from settings import SETTINGS, COLOURS
+from settings import SETTINGS
+from constants import COLOURS, RAYCAST_DEMO
 from objects import button
 import pygame
 
@@ -44,8 +45,7 @@ class MainMenu(pygame.sprite.Sprite):
         ## Create objects
         # Start button
         def start_function():
-            print("WOOO")
-            self.groups()[0].add()
+            pygame.event.post(pygame.event.Event(RAYCAST_DEMO))
 
         self.start_button = button.Button(
             start_btn_img,
