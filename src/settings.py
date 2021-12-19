@@ -13,4 +13,3 @@ class Settings:
 
 
 SETTINGS = Settings("Raycasting", 1000, 500, 60)
-COLOURS = {"Black": (0, 0, 0), "White": (255, 255, 255), "Dark Grey": (25, 25, 25)}
