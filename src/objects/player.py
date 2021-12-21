@@ -1,5 +1,6 @@
 import math
 
+from settings import SETTINGS
 from objects import game_object
 import pygame
 
@@ -15,9 +16,14 @@ class Player(game_object.GameObject):
         self.original_image = image
         self.original_rect = self.rect
 
-        self.movement_speed = 5
+        self.movement_speed = SETTINGS.movement_speed
         self.angle = 0
-        self.rotation_speed = 5
+        self.rotation_speed = SETTINGS.movement_angle
+
+        # A floating point version of rect components are needed to maintain movement
+        # precision. This is due to rects only working with integers
+        self.float_rect_x = float(self.rect.x)
+        self.float_rect_y = float(self.rect.y)
 
     def move(self, forward, sideways) -> None:
 
@@ -26,19 +32,22 @@ class Player(game_object.GameObject):
         # Calculate the x and y components of the movement, multiply by movement speed
         # multiplier and directional modifer
         if forward != 0:
-            self.rect.x -= (
+            self.float_rect_x -= (
                 math.sin(math.radians(self.angle)) * self.movement_speed * forward
             )
-            self.rect.y -= (
+            self.float_rect_y -= (
                 math.cos(math.radians(self.angle)) * self.movement_speed * forward
             )
         if sideways != 0:
-            self.rect.x += (
+            self.float_rect_x += (
                 math.cos(math.radians(self.angle)) * self.movement_speed * sideways
             )
-            self.rect.y -= (
+            self.float_rect_y -= (
                 math.sin(math.radians(self.angle)) * self.movement_speed * sideways
             )
+        
+        self.rect.x = int(self.float_rect_x)
+        self.rect.y = int(self.float_rect_y)
 
     def rotate(self, direction) -> None:
 
@@ -57,3 +66,5 @@ class Player(game_object.GameObject):
         self.image = pygame.transform.rotate(self.original_image, self.angle)
         # Create a new rect based on the center of the old rect
         self.rect = self.image.get_rect(center=self.rect.center)
+        # Update the floating rect
+        self.float_rect_x, self.float_rect_y  = float(self.rect.x), float(self.rect.y)

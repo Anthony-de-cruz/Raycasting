@@ -10,6 +10,8 @@ class Settings:
     window_width: int
     window_height: int
     fps: int
+    movement_speed: int
+    movement_angle: int
 
 
-SETTINGS = Settings("Raycasting", 1000, 500, 60)
+SETTINGS = Settings("Raycasting", 1000, 500, 60, 5, 5)
