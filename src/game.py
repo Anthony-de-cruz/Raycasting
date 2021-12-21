@@ -31,8 +31,8 @@ class Game:
         ## Scenes
         self.scenes = Object()
         self.scenes.focus = pygame.sprite.GroupSingle()
-        self.scenes.main_menu = main_menu.MainMenu()
-        self.scenes.raycast_demo = raycast_demo.RaycastDemo()
+        
+        
 
         ## Initial state
         pygame.event.post(pygame.event.Event(MAIN_MENU))
@@ -58,10 +58,12 @@ class Game:
             
             elif event.type == MAIN_MENU:
                 print("Changing scene to: Main Menu")
+                self.scenes.main_menu = main_menu.MainMenu()
                 self.scenes.focus.add(self.scenes.main_menu)
 
             elif event.type == RAYCAST_DEMO:
                 print("Changing scene to: Raycast Demo")
+                self.scenes.raycast_demo = raycast_demo.RaycastDemo()
                 self.scenes.focus.add(self.scenes.raycast_demo)
 
     def main_loop(self) -> None:
