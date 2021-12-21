@@ -4,12 +4,18 @@ import pygame
 
 
 class GridMap(game_object.GameObject):
-    
-    def __init__(self, x_pos: int, y_pos: int,
-                x_tiles: int, y_tiles: int, *group: pygame.sprite.Group):
+    def __init__(
+        self,
+        x_pos: int,
+        y_pos: int,
+        x_tiles: int,
+        y_tiles: int,
+        *group: pygame.sprite.Group,
+    ):
 
-        self.tile_width = self.tile_height = int((
-            pygame.display.get_window_size()[0] / 2) / x_tiles)
+        self.tile_width = self.tile_height = int(
+            (pygame.display.get_window_size()[0] / 2) / x_tiles
+        )
 
         # Create the surface based on calculated dimentions
         image = pygame.Surface((self.tile_height * x_tiles, self.tile_height * y_tiles))
@@ -43,9 +49,16 @@ class GridMap(game_object.GameObject):
 
                 if self.map_data[f"{x},{y}"] == 1:
                     pygame.draw.rect(
-                        self.image, COLOURS["White"], 
-                        pygame.rect.Rect(x * self.tile_width, y * self.tile_height, self.tile_width, self.tile_height))
-    
+                        self.image,
+                        COLOURS["White"],
+                        pygame.rect.Rect(
+                            x * self.tile_width,
+                            y * self.tile_height,
+                            self.tile_width,
+                            self.tile_height,
+                        ),
+                    )
+
     def update(self):
 
         self.render()

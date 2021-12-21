@@ -3,6 +3,7 @@ from types import FunctionType
 from objects import game_object
 import pygame
 
+
 class Button(game_object.GameObject):
 
     """A button object"""
@@ -16,9 +17,7 @@ class Button(game_object.GameObject):
         function: FunctionType = None
     ):
 
-        super().__init__(
-            x_pos, y_pos, *group, image=image
-        )
+        super().__init__(x_pos, y_pos, *group, image=image)
 
         if function is not None:
             self.function = function

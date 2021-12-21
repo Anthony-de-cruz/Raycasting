@@ -31,8 +31,6 @@ class Game:
         ## Scenes
         self.scenes = Object()
         self.scenes.focus = pygame.sprite.GroupSingle()
-        
-        
 
         ## Initial state
         pygame.event.post(pygame.event.Event(MAIN_MENU))
@@ -55,7 +53,7 @@ class Game:
             if event.type is pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            
+
             elif event.type == MAIN_MENU:
                 print("Changing scene to: Main Menu")
                 self.scenes.main_menu = main_menu.MainMenu()

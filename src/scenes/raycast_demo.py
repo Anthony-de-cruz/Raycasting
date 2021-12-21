@@ -60,7 +60,7 @@ class RaycastDemo(pygame.sprite.Sprite):
             if keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
                 self.group.player.sprites()[0].rotate(
                     (keys[pygame.K_LEFT] - keys[pygame.K_RIGHT])
-                ) 
+                )
 
     def render(self) -> pygame.Surface:
 

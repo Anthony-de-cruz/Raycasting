@@ -13,7 +13,7 @@ class GameObject(pygame.sprite.Sprite):
         x_pos: int,
         y_pos: int,
         *group: pygame.sprite.Group,
-        image: pygame.Surface=None
+        image: pygame.Surface = None
     ):
 
         super().__init__(*group)
@@ -38,6 +38,4 @@ class GameObject(pygame.sprite.Sprite):
             self.image = pygame.Surface((self.width, self.height))
 
         # Create rect
-        self.rect = pygame.Rect(
-            x_pos, y_pos, self.width, self.height
-        )
+        self.rect = pygame.Rect(x_pos, y_pos, self.width, self.height)

@@ -45,7 +45,7 @@ class Player(game_object.GameObject):
             self.float_rect_y -= (
                 math.sin(math.radians(self.angle)) * self.movement_speed * sideways
             )
-        
+
         self.rect.x = int(self.float_rect_x)
         self.rect.y = int(self.float_rect_y)
 
@@ -67,4 +67,4 @@ class Player(game_object.GameObject):
         # Create a new rect based on the center of the old rect
         self.rect = self.image.get_rect(center=self.rect.center)
         # Update the floating rect
-        self.float_rect_x, self.float_rect_y  = float(self.rect.x), float(self.rect.y)
+        self.float_rect_x, self.float_rect_y = float(self.rect.x), float(self.rect.y)
