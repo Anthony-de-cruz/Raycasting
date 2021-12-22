@@ -38,7 +38,9 @@ class Game:
 
     def setup_window(self) -> pygame.surface:
 
-        window = pygame.display.set_mode((self.window_width, self.window_height))
+        window = pygame.display.set_mode(
+            (self.window_width, self.window_height)
+        ).convert_alpha()
         pygame.display.set_caption((self.window_name))
         os.environ["SDL_VIDEO_CENTERED"] = "1"
 

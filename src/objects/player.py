@@ -6,6 +6,9 @@ import pygame
 
 
 class Player(game_object.GameObject):
+
+    """Controllable player from which rays are cast."""
+
     def __init__(
         self, image: pygame.Surface, x_pos: int, y_pos: int, *group: pygame.sprite.Group
     ):
@@ -15,6 +18,8 @@ class Player(game_object.GameObject):
         # Save original image to preserve quality after transformations
         self.original_image = image
         self.original_rect = self.rect
+
+        self.mask = pygame.mask.from_surface(image)
 
         self.movement_speed = SETTINGS.movement_speed
         self.angle = 0
@@ -62,8 +67,9 @@ class Player(game_object.GameObject):
         elif self.angle < -360:
             self.angle += 360
 
-        # Create a new image by rotating the original image by new angle
+        # Create a new image and mask by rotating the original image by new angle
         self.image = pygame.transform.rotate(self.original_image, self.angle)
+        self.mask = pygame.mask.from_surface(self.image)
         # Create a new rect based on the center of the old rect
         self.rect = self.image.get_rect(center=self.rect.center)
         # Update the floating rect

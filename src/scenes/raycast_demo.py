@@ -11,6 +11,10 @@ class Object:
 
 
 class RaycastDemo(pygame.sprite.Sprite):
+
+    """Raycast demonstration scene. Shows user the map, player and first person
+    view to show off raycasting."""
+
     def __init__(self, *group: pygame.sprite.Group):
 
         super().__init__(*group)
@@ -61,6 +65,8 @@ class RaycastDemo(pygame.sprite.Sprite):
                 self.group.player.sprites()[0].rotate(
                     (keys[pygame.K_LEFT] - keys[pygame.K_RIGHT])
                 )
+
+        print(pygame.sprite.collide_mask(self.player, self.map))
 
     def render(self) -> pygame.Surface:
 
