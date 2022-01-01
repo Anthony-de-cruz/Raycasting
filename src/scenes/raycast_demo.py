@@ -34,18 +34,19 @@ class RaycastDemo(pygame.sprite.Sprite):
 
         ## Load assets
         # Player sprite
-        player_img = pygame.image.load(os.path.join("assets", "Arrow.png"))
+        player_img = pygame.image.load(os.path.join("assets", "Arrow.png")).convert_alpha()
 
         ## Create objects
         # Map
         self.map = grid_map.GridMap(0, 0, 10, 10, self.group.map)
         # Player
-        self.player = player.Player(player_img, 475, 200, self.group.player)
+        self.player = player.Player(player_img, 100, 200, self.group.player)
 
     def update(self, event_list) -> None:
 
         """Method to run every frame and update scene behaviour."""
 
+        # Might switch to event driven inputs in the future
         keys = pygame.key.get_pressed()
 
         if True in keys:
@@ -66,7 +67,9 @@ class RaycastDemo(pygame.sprite.Sprite):
                     (keys[pygame.K_LEFT] - keys[pygame.K_RIGHT])
                 )
 
-        print(pygame.sprite.collide_mask(self.player, self.map))
+        for player in self.group.player:
+            for map_set in self.group.map:
+                player.check_collisions(map_set.tiles_collision_group)
 
     def render(self) -> pygame.Surface:
 

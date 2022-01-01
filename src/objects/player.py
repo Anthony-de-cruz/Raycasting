@@ -1,11 +1,11 @@
 import math
 
 from settings import SETTINGS
-from objects import game_object
+from objects.game_object import GameObject
 import pygame
 
 
-class Player(game_object.GameObject):
+class Player(GameObject):
 
     """Controllable player from which rays are cast."""
 
@@ -27,8 +27,7 @@ class Player(game_object.GameObject):
 
         # A floating point version of rect components are needed to maintain movement
         # precision. This is due to rects only working with integers
-        self.float_rect_x = float(self.rect.x)
-        self.float_rect_y = float(self.rect.y)
+        self.float_rect_x, self.float_rect_y = float(self.rect.x), float(self.rect.y)
 
     def move(self, forward, sideways) -> None:
 
@@ -51,8 +50,8 @@ class Player(game_object.GameObject):
                 math.sin(math.radians(self.angle)) * self.movement_speed * sideways
             )
 
-        self.rect.x = int(self.float_rect_x)
-        self.rect.y = int(self.float_rect_y)
+        # Update rect
+        self.rect.x, self.rect.y = int(self.float_rect_x), int(self.float_rect_y)
 
     def rotate(self, direction) -> None:
 
@@ -74,3 +73,23 @@ class Player(game_object.GameObject):
         self.rect = self.image.get_rect(center=self.rect.center)
         # Update the floating rect
         self.float_rect_x, self.float_rect_y = float(self.rect.x), float(self.rect.y)
+
+    def check_collisions(self, *groups) -> None:
+
+        for group in groups:
+
+            for sprite in pygame.sprite.spritecollide(
+                self, group, False, collided=pygame.sprite.collide_mask):
+
+                print(sprite, pygame.sprite.collide_mask(self, sprite))
+
+                inter_x, inter_y = pygame.sprite.collide_mask(self, sprite)
+
+                #self.rect.x += inter_x
+                #self.rect.y += inter_y
+                #self.float_rect_x += inter_x
+                #self.float_rect_y += inter_y
+                
+
+                #print(pygame.sprite.collide_mask(self, sprite))
+                #collideSprite = pygame.sprite.spritecollideany(self,group)
