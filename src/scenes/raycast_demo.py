@@ -34,7 +34,9 @@ class RaycastDemo(pygame.sprite.Sprite):
 
         ## Load assets
         # Player sprite
-        player_img = pygame.image.load(os.path.join("assets", "Arrow.png")).convert_alpha()
+        player_img = pygame.image.load(
+            os.path.join("assets", "Arrow.png")
+        ).convert_alpha()
 
         ## Create objects
         # Map

@@ -79,17 +79,17 @@ class Player(GameObject):
         for group in groups:
 
             for sprite in pygame.sprite.spritecollide(
-                self, group, False, collided=pygame.sprite.collide_mask):
+                self, group, False, collided=pygame.sprite.collide_mask
+            ):
 
                 print(sprite, pygame.sprite.collide_mask(self, sprite))
 
                 inter_x, inter_y = pygame.sprite.collide_mask(self, sprite)
 
-                #self.rect.x += inter_x
-                #self.rect.y += inter_y
-                #self.float_rect_x += inter_x
-                #self.float_rect_y += inter_y
-                
+                # self.rect.x += inter_x
+                # self.rect.y += inter_y
+                # self.float_rect_x += inter_x
+                # self.float_rect_y += inter_y
 
-                #print(pygame.sprite.collide_mask(self, sprite))
-                #collideSprite = pygame.sprite.spritecollideany(self,group)
+                # print(pygame.sprite.collide_mask(self, sprite))
+                # collideSprite = pygame.sprite.spritecollideany(self,group)
